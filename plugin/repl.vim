@@ -26,25 +26,25 @@ endfunction
 
 " Configuration:
 
-let s:default_commands = {
-      \ 'python': 'python',
+let s:default_config = {
+      \ 'python': {'cmd': 'python', 'bracketed_paste': true }
       \ }
 
 " User configuration
 
 function! s:configure_constants()
   if !exists('g:repl_filetype_commands')
-    let g:repl_filetype_commands = {}
-  elseif type(g:repl_filetype_commands) != v:t_dict
+    let g:repl_config = {}
+  elseif type(g:repl_config) != v:t_dict
     throw 'g:repl_filetype_commands must be Dict'
   endif
-  let g:repl_filetype_commands = extend(
-        \ s:default_commands,
-        \ g:repl_filetype_commands,
+  let g:repl_config = extend(
+        \ s:default_config,
+        \ g:repl_config,
         \ )
 
   if !exists('g:repl_default')
-    let g:repl_default = &shell
+    let g:repl_default = { 'cmd': &shell, 'bracketed_paste': true }
   elseif type(g:repl_default) != v:t_string
     throw 'g:repl_default must be a String'
   endif

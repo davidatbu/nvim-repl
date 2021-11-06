@@ -46,7 +46,7 @@ function! repl#open(...)
   let current_window_id = win_getid()
   let func_args = a:000
   let command = len(func_args) == 0 ?
-        \ get(g:repl_filetype_commands, &filetype, g:repl_default) :
+        \ get(g:repl_config, &filetype, g:repl_default) :
         \ func_args[0]
   if &columns >= 160
     vert new
